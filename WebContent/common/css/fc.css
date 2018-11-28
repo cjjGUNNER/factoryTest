@@ -1,0 +1,97 @@
+@charset "utf-8";
+/*通用样式*/
+body,img,a,ul,li,form,div,span,table,font,pre,p,iframe{margin:0px;padding: 0px;border: 0px}
+
+/*字体样式*/
+.fc_ft_1{font-family:微软雅黑;font-size:16px;font-weight:bold;color:#ffffff}
+.fc_ft_2{font-family:微软雅黑;font-size:14px;color:#ffffff}
+
+
+/*链接样式*/
+a{text-decoration:none;cursor:pointer;}
+.fc_lk_1{font-family:微软雅黑;font-size:14px;color:#ffffff;text-decoration:none;}
+.fc_lk_1:hover{color:red;font-size:14px;}
+.fc_lk_2{font-family:微软雅黑;font-size:12px;color:#008fd7;}
+.fc_lk_2:hover{color:#4e8d14;}
+
+/*表格样式*/
+.fc_tb_1{line-height:28px;margin:8px;}
+.fc_td_1{text-align: right}
+.fc_table_1 a,
+.fc_table_1 a:link,
+.fc_table_1 a:visited {
+	border:none;
+	}		
+.fc_table_1 {
+	width:95%;
+	border:1px solid #e3f1fe;
+	margin:1em auto;
+	border-collapse:collapse;
+	}
+.fc_table_1 caption {
+	color: #333;
+	font:bold 1.8em/2em Microsoft YaHei "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	letter-spacing:.1em;
+	padding:0;
+	margin-bottom:.5em;
+	caption-side:top;
+	text-align:center;
+	}	
+.fc_table_1 tr.odd td,
+.fc_table_1 tr.odd .column1 {
+	background:#f4f9fe url(../images/background.gif) no-repeat;
+	}	
+.fc_table_1 .column1	{
+	background:#f9fcfe;
+	}
+.fc_table_1 td {
+	color:#333;
+	font: 1em/2em Microsoft YaHei;
+	border-bottom: 1px solid #e3f1fe;
+	border-left:1px solid #e5eff8;
+	padding:.8em 1em;
+	text-align:left;
+	}				
+.fc_table_1 th {
+	color: #000;
+	text-align:center;
+	border-bottom: 1px solid #e3f1fe;
+	font: bold 1em/2em Microsoft YaHei;
+	border-left:1px solid #e5eff8;
+	padding:.8em 1em;
+	}	
+.fc_table_1 .uploadify{
+	margin: 15px 0 0 5px;
+}
+.fc_table_1 tr td .easyui-linkbutton{
+	padding-left: 5px;
+}
+.form-control { 
+	display: block; 
+	width: 95% !important; 
+	height: 15px; 
+	padding: 3px 2%; 
+	font-size: 12px; 
+	line-height: 1.428571429; 
+	color: #333; 
+	vertical-align: middle; 
+	background-color: #ffffff; 
+	border: 1px solid #cccccc; 
+	border-radius: 4px; 
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+} 
+.form-control:focus { 
+	border-color: #66afe9; 
+	outline: 0; 
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
+}
+.titleCodeEdit{
+	font: normal 14px/1.5 Tahoma Microsoft YaHei sans-serif;
+	scrollbar-arrow-color:yellow;
+	scrollbar-base-color:lightsalmon;
+} 
+#datagrid_table,#datagrid_add,#datagrid_update,#datagrid_relation{display:none}

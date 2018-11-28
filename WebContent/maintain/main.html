@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>工厂后台管理</title>
+<link rel="shortcut icon" type="image/x-icon" href="../common/images/xxl_fav.ico" >
+<link rel="Bookmark" href="../common/images/xxl_fav.ico"/>
+<link href="../common/jquery-easyui/css/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../common/js/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../common/jquery-easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../common/jquery-easyui/themes/icon.css">
+<script type="text/javascript" src="../common/jquery-easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../common/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../common/jquery-easyui/js/XiuCai.index.js"></script>
+<script type="text/javascript" src="../common/js/jquery.timers-1.2.js"></script>
+<link href="../common/css/fc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../common/js/fc.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	var _menus = {
+	"menus": [{
+		"menuid": "1",
+		"icon": "icon-menu",
+		"menuname": "系统管理",
+		"menus": [{
+			"menuid": "12",
+			"menuname": "用户管理",
+			"icon": "icon-menu",
+			"url": "user_info.jsp"
+			
+		},
+		{
+			"menuid": "13",
+			"menuname": "部门类别管理",
+			"icon": "icon-menu",
+			"url": "process_type.jsp"
+		},{
+			"menuid": "14",
+			"menuname": "员工管理",
+			"icon": "icon-menu",
+			"url": "employee_info.jsp"
+		}]
+	}]
+};
+
+        function logout(){
+        	$.messager.confirm('退出', '您确定要退出云平台?', function(r) {
+                if (r) {
+                	$.get(getTimeURL(fcUrl + "common/util/logout.do"),function(data){                		
+						if(data=="ok"){
+							window.location = "../index.html";
+						}
+					});
+                }
+            });
+    	}
+        
+        $(function(){
+        	var serverTime;
+        	$.get(getTimeURL(fcUrl + "common/util/serverTime.do"),function(data){
+        		serverTime = parseInt(data);
+        		var date = new Date(serverTime);
+				$("#timer_span").html(date.toLocaleString());
+        	},"json");
+        	$('body').everyTime('1s',function(){
+				serverTime+=1000;		
+				var date = new Date(serverTime);
+				$("#timer_span").html(date.toLocaleString());
+			});
+        });
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y:hidden" fit="true" scroll="no">
+    <div region="north" split="true" style="overflow:hidden;height:38px;background: url(../common/jquery-easyui/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;line-height:30px;">
+       	<div style="position:absolute;top:3px;right:10px;" class="fc_ft_2"><span id="timer_span" style="margin-right:20px" class="fc_ft_2"></span>欢迎<span id="userName" style="margin:0px 20px 0px 3px" class="fc_ft_2">tom</span><a href="javascript:logout()" class="fc_lk_1"><img src="../common/images/exit.png" style="vertical-align:middle;width:18px;height:18px"/>退出</a></div>
+      	<span style="padding-left:10px;letter-spacing:3px" class="fc_ft_1"><img id="messageLogo" src="../common/images/logo_1.jpg" width="30" height="30" style="vertical-align:middle;margin-right:10px"/><span id="messageName">生产进度后台管理</span></span>
+    </div>
+    <div region="west" split="true"  title="工厂计件" style="width:180px;" id="west">
+			<div id="nav">
+			</div>
+    </div>
+    <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
+        <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
+			<div title="首页" style="padding:20px;overflow:hidden; color:red; " >
+				
+			</div>
+		</div>
+    </div>
+	<div id="mm" class="easyui-menu" style="width:150px;">
+		<div id="tabupdate">刷新</div>
+		<div class="menu-sep"></div>
+		<div id="close">关闭</div>
+		<div id="closeall">全部关闭</div>
+		<div id="closeother">除此之外全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="closeright">当前页右侧全部关闭</div>
+		<div id="closeleft">当前页左侧全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="exit">退出</div>
+	</div>
+</body>
+</html>

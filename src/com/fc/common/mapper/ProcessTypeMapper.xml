@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fc.maintain.dao.IProcessTypeDao" >
+  <resultMap id="BaseResultMap" type="com.fc.common.entity.ProcessType">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR"/>
+    <result column="process_code" property="processCode" jdbcType="FLOAT"/>
+    <result column="disabled" property="disabled" jdbcType="INTEGER" />
+  </resultMap>
+   <insert id="insert" parameterType="ProcessType" >
+    insert into process_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="processCode != null" >
+        process_code,
+      </if>
+      <if test="processName != null" >
+        process_name,
+      </if>
+      <if test="disabled != null" >
+        disabled
+      </if>       
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+       <if test="processCode != null" >
+        #{processCode,jdbcType=FLOAT},
+      </if>
+      <if test="processName != null" >
+        #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=INTEGER}
+      </if> 
+    </trim>
+  </insert> 
+  
+  <select id="queryPageProcessType" resultMap="BaseResultMap" parameterType="ProcessType">
+    select * from process_type
+    order by process_code limit #{pageStart,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countProcessType" resultType="int">
+    select count(*) from process_type
+  </select>
+  
+  <select id="queryById" parameterType="int" resultMap="BaseResultMap">
+    select * from process_type where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateById" parameterType="ProcessType">
+    update process_type
+    <set >
+      <if test="processCode != null" >
+        process_code = #{processCode,jdbcType=FLOAT},
+      </if>
+      <if test="processName != null" >
+        process_name = #{processName,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deleteByIds" parameterType="int" >
+    delete from process_type where id in
+    <foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+  </delete>
+  
+  <update id="updateDisabled" parameterType="ProcessType">
+    update process_type set disabled = #{disabled,jdbcType=INTEGER} where id in
+    <foreach item="idItem" collection="ids" open="(" separator="," close=")">#{idItem}</foreach>
+  </update>
+  
+  <select id="processList" resultMap="BaseResultMap">
+    select * from process_type  where disabled = 0 order by process_code
+  </select>
+</mapper>

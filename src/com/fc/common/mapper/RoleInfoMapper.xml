@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fc.maintain.dao.IRoleInfoDao" >
+  <resultMap id="BaseResultMap" type="com.fc.common.entity.RoleInfo">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+    <result column="disabled" property="disabled" jdbcType="INTEGER" />
+  </resultMap>
+   <select id="rList" resultMap="BaseResultMap" parameterType="RoleInfo">
+    select * from role_info where id!=3 and disabled = 0
+  </select>
+</mapper>
